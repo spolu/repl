@@ -36,7 +36,7 @@ factory.log().out('Starting...');
     app.use(app.router);
   });
 
-  var http_srv = http.createServer(app).listen(8383, '127.0.0.1');
+  var http_srv = http.createServer(app).listen(8383);
   console.error('HTTP Server started on `http://127.0.0.1:8383`');
 })();
 

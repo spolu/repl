@@ -21,13 +21,23 @@ angular.module('repl.services').
 
     var def_code = '';
     def_code += '(function($, cb_) {\n';
-    def_code += '  /* your code */\n';
+    def_code += '  /* Your code. */\n';
     def_code += '  \n';
     def_code += '  return cb_($);\n';
     def_code += '});';
 
+    var initial_code = '';
+    initial_code += '(function($, cb_) {\n';
+    initial_code += '  /* Example code. Clik "Run" to execute. */\n';
+    initial_code += '  $.push({\n';
+    initial_code += '    foo: \'hello\',\n';
+    initial_code += '    bar: \'world\'\n';
+    initial_code += '  });\n';
+    initial_code += '  return cb_($);\n';
+    initial_code += '});';
+
     var state = [{
-      code: def_code,
+      code: initial_code,
       json: []
     }];
     var current = 0;

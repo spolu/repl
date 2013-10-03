@@ -1,0 +1,14 @@
+<div class="control" ng-class="{ import: importing }">
+  <span ng-hide="importing">
+    <a href="#" ng-click="run()" class="run">Run</a>
+    <a href="#" ng-click="prev()" class="prev">&lt</a>
+    <span>{{current()}} / {{count()}}</span>
+    <a href="#" ng-click="next()" class="next">&gt</a>
+  </span>
+  <span ng-hide="importing" class="right">
+    <a href="#" ng-click="import()" class="import">Import</a>
+  </span>
+  <span ng-show="importing" class="right">
+    <a href="#" ng-click="submit()" class="import">Submit</a>
+  </span>
+</div>

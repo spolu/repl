@@ -1,0 +1,12 @@
+#viewer {
+  position: absolute;
+  left: 0px;
+  right: 50%;
+  top: 0px;
+  bottom: 0px;
+}
+
+#viewer.import {
+  right: 0px;
+  top: 20px
+}

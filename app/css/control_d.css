@@ -1,0 +1,42 @@
+.control {
+  position: absolute;
+  left: 50%;
+  right: 0px;
+  top: 0px;
+  height: 20px;
+  background-color: hsl(70, 8%, 45%);
+}
+
+.control.import {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: 20px;
+}
+
+.control a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 20px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.control .right {
+  float: right;
+}
+
+.control .run {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.control .prev,
+.control .next {
+}
+
+.control .import {
+}
+

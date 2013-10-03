@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="repl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/lib/normalize-2.1.2.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/css/main.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/css/viewer_d.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/control_d.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/editor_d.css" rel="stylesheet"/>
+  </head>
+
+  <body ng-controller="TopCtrl">
+
+    <viewer></viewer>
+    <control></control>
+    <editor></editor>
+
+    <!-- Scripts -->
+    <script src="/lib/angular-1.2.0rc1.min.js"></script>
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/async.js"></script>
+    <script src="/lib/ace-builds/src-noconflict/ace.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <!-- Filters -->
+
+    <!-- Services -->
+    <script src="/js/state_s.js"></script>
+
+    <!-- Components -->
+    <script src="/js/viewer_d.js"></script>
+    <script src="/js/editor_d.js"></script>
+    <script src="/js/control_d.js"></script>
+  </body>
+</html>

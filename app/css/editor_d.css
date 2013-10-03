@@ -1,0 +1,11 @@
+#editor {
+  position: absolute;
+  left: 50%;
+  right: 0px;
+  bottom: 0px;
+  top: 20px;
+}
+
+#editor.import {
+  width: 0px;
+}

@@ -28,15 +28,23 @@
   float: right;
 }
 
-.control .run {
+.control a.run {
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.control .prev,
-.control .next {
+.control a.prev,
+.control a.next {
 }
 
-.control .import {
+.control a.import {
 }
 
+.control a.mode {
+  opacity: 0.5;
+}
+
+.control a.active {
+  font-weight: bold;
+  opacity: 1.0;
+}

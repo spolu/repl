@@ -6,7 +6,13 @@
     <a href="#" ng-click="next()" class="next">&gt</a>
   </span>
   <span ng-hide="importing" class="right">
+    <a href="#" ng-click="download()" class="import">Download</a>
     <a href="#" ng-click="import()" class="import">Import</a>
+  </span>
+
+  <span ng-show="importing">
+    <a href="#" ng-click="json()" class="mode" ng-class="{ active: mode == 'json' }">JSON</a>
+    <a href="#" ng-click="csv()" class="mode" ng-class="{ active: mode == 'csv' }">CSV</a>
   </span>
   <span ng-show="importing" class="right">
     <a href="#" ng-click="submit()" class="import">Submit</a>

@@ -28,6 +28,7 @@ angular.module('repl.directives').controller('ControlCtrl',
 
     $scope.import = function() {
       $rootScope.$broadcast('import');
+      $scope.mode = 'json';
       $scope.importing = true;
     };
 
@@ -36,12 +37,26 @@ angular.module('repl.directives').controller('ControlCtrl',
       $scope.importing = false;
     };
 
+    $scope.csv = function() {
+      $rootScope.$broadcast('csv');
+      $scope.mode = 'csv';
+    };
+    $scope.json = function() {
+      $rootScope.$broadcast('json');
+      $scope.mode = 'json';
+    };
+
+    $scope.download = function() {
+      $rootScope.$broadcast('download');
+    };
+
     $scope.current = function() {
       return _state.current() + 1;
     };
     $scope.count = function() {
       return _state.get().length;
     };
+
   });
 
 //

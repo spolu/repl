@@ -34,24 +34,112 @@ angular.module('repl.directives').controller('ViewerCtrl',
 
     $scope.$on('update', update);
 
+    $scope.importing = false;
+
     $scope.$on('import', function() {
       $scope.importing = true;
       editor.setTheme("ace/theme/monokai");
       editor.setReadOnly(false);
+
+      editor.getSession().setMode("ace/mode/json");
+      $scope.mode = 'json';
+      editor.setValue('[]');
     });
 
-    $scope.$on('submit', function() {
-      $scope.importing = false;
-      editor.setTheme("ace/theme/github");
-      editor.setReadOnly(true);
+    $scope.$on('csv', function() {
+      editor.getSession().setMode("ace/mode/text");
+      $scope.mode = 'csv';
+      editor.setValue('');
+    });
+    $scope.$on('json', function() {
+      editor.getSession().setMode("ace/mode/json");
+      $scope.mode = 'json';
+      editor.setValue('[]');
+    });
+
+    var import_json = function(str) {
       try {
-        var json = JSON.parse(editor.getValue());
+        var json = JSON.parse(str);
         _state.import(json);
       }
       catch(err) {
         /* We revert */
         update();
       }
+    };
+
+    var import_csv = function(str) {
+      try {
+        var lines = str.split('\n');
+        var header = lines.shift().split(',');
+        var json = [];
+        lines.forEach(function(l) {
+          var values = l.split(',');
+          var tmp = {};
+          values.forEach(function(v, i) {
+            tmp[header[i].trim() || ('field_' + i)] = v.trim();
+          });
+          json.push(tmp);
+        });
+        _state.import(json);
+      }
+      catch(err) {
+        /* We revert */
+        update();
+      }
+    };
+
+    $scope.$on('submit', function() {
+      $scope.importing = false;
+      editor.getSession().setMode("ace/mode/json");
+      editor.setTheme("ace/theme/github");
+      editor.setReadOnly(true);
+      if($scope.mode === 'json') {
+        import_json(editor.getValue());
+      }
+      if($scope.mode === 'csv') {
+        import_csv(editor.getValue());
+      }
+      $scope.mode = 'json';
+    });
+
+    var json2csv = function(obj) {
+      var array = typeof obj != 'object' ? JSON.parse(obj) : obj;
+
+      var str = '';
+      var line = '';
+
+      var head = array[0];
+      for(var index in array[0]) {
+        var value = index + "";
+        line += '"' + value.replace(/"/g, '""') + '",';
+      }
+      line = line.slice(0, -1);
+      str += line + '\r\n';
+
+      for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+          var value = array[i][index] + "";
+          line += '"' + value.replace(/"/g, '""') + '",';
+        }
+        line = line.slice(0, -1);
+        str += line + '\r\n';
+      }
+      return str;
+    };
+
+    $scope.$on('download', function() {
+      var uri = "data:text/csv;charset=utf-8," + 
+        escape(json2csv(editor.getValue()));
+
+      var downloadLink = document.createElement("a");
+      downloadLink.href = uri;
+      downloadLink.download = "repl_download.csv";
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     });
 
     /* Initial update. */

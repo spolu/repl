@@ -80,43 +80,6 @@ angular.module('repl.services').
         $rootScope.$broadcast('update');
       },
       run: function() {
-
-        /* HTTP Helper. */
-        var _http = {
-          get: function(url, cb_) {
-            console.log('HTTP: ' + url);
-            $timeout(function() {
-              $rootScope.$apply(function() {
-                $http.get('/proxy/http_get?url=' + escape(url), {
-                  cache: false,
-                }).success(function(data, status, headers, config) {
-                  return cb_(data);
-                }).error(function(data, status, headers, config) {
-                  return cb_(null);
-                });
-              });
-            });
-          }
-        };
-
-        /* HTTPS Helper. */
-        var _https = {
-          get: function(url, cb_) {
-            console.log('HTTPS: ' + url);
-            $timeout(function() {
-              $rootScope.$apply(function() {
-                $http.get('/proxy/https_get?url=' + escape(url), {
-                  cache: false,
-                }).success(function(data, status, headers, config) {
-                  return cb_(data);
-                }).error(function(data, status, headers, config) {
-                  return cb_(null);
-                });
-              });
-            });
-          }
-        };
-
         /* Parse the code. */
         var f = eval(state[current].code);
         if(typeof f !== 'function') {

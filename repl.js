@@ -24,10 +24,6 @@ var app = express();
 factory.log().out('Starting...');
 (function() {
 
-  /* PROXY */
-  app.get( '/proxy/http_get',          require('./routes/proxy.js').http_get);
-  app.get( '/proxy/https_get',         require('./routes/proxy.js').https_get);
-
   /* App Configuration */
   app.configure(function() {
     app.use('/', express.static(__dirname + '/app'));

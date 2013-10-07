@@ -22,8 +22,8 @@ angular.module('repl.directives').controller('ControlCtrl',
     $scope.current = function() {
       return _state.current() + 1;
     };
-    $scope.count = function() {
-      return _state.get().length;
+    $scope.state = function() {
+      return _state.get();
     };
 
     /**************************************************************************/
@@ -32,11 +32,8 @@ angular.module('repl.directives').controller('ControlCtrl',
     $scope.run = function() {
       _state.run();
     };
-    $scope.prev = function() {
-      _state.prev();
-    };
-    $scope.next = function() {
-      _state.next();
+    $scope.select = function(s) {
+      _state.select(s.id);
     };
 
     /**************************************************************************/

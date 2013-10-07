@@ -80,6 +80,12 @@ angular.module('repl.services').
           current--;
         $rootScope.$broadcast('update');
       },
+      select: function(id) {
+        if(id >= 0 && id < state.length) {
+          current = id;
+        }
+        $rootScope.$broadcast('update');
+      },
       /************************************************************************/
       /* IMPORT                                                               */
       /************************************************************************/
@@ -168,6 +174,11 @@ angular.module('repl.services').
                 console.log('Skipping: ' + id);
               return cb_();
             }
+            else if(s.code === def_code) {
+              if(console && console.log)
+                console.log('Skipping [NOP]: ' + id);
+              return cb_();
+            }
             else {
               if(console && console.log)
                 console.log('Running: ' + id);
@@ -200,7 +211,8 @@ angular.module('repl.services').
                         error: null
                       }
                     }
-                    //current = id + 1;
+                    /* Move to id if it was freshly created. */
+                    current = id + 1;
                   });
                   $rootScope.$broadcast('update');
                   return cb_();

@@ -1,18 +1,37 @@
 .control {
   position: absolute;
-  left: 50%;
+  left: 0px;
   right: 0px;
   top: 0px;
   height: 20px;
   background-color: hsl(70, 8%, 45%);
 }
 
-.control.import {
+.control > div.viewer {
   position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 50%;
+  bottom: 20px;
+}
+.control > div.editor {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  right: 0px;
+  bottom: 20px;
+}
+
+.control > div.import {
+  position: absolute;
+  top: 0px;
   left: 0px;
   right: 0px;
-  top: 0px;
-  height: 20px;
+  bottom: 20px;
+}
+
+.control .right {
+  float: right;
 }
 
 .control a {
@@ -22,10 +41,6 @@
   line-height: 20px;
   margin-left: 3px;
   margin-right: 3px;
-}
-
-.control .right {
-  float: right;
 }
 
 .control a.run {
@@ -38,6 +53,9 @@
 .control a.next {
 }
 
+.control a.download {
+  margin-left: 10px;
+}
 .control a.import {
 }
 

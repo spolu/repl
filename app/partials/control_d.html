@@ -1,20 +1,31 @@
-<div class="control" ng-class="{ import: importing }">
-  <span ng-hide="importing">
-    <a href="#" ng-click="run()" class="run">Run</a>
-    <a href="#" ng-click="prev()" class="prev">&lt</a>
-    <span>{{current()}} / {{count()}}</span>
-    <a href="#" ng-click="next()" class="next">&gt</a>
-  </span>
-  <span ng-hide="importing" class="right">
-    <a href="#" ng-click="download()" class="import">Download</a>
-    <a href="#" ng-click="import()" class="import">Import</a>
-  </span>
+<div class="control">
+  <div class="viewer" ng-hide="importing">
+    <span>
+      <a href="#" ng-click="download()" class="download">Download</a>
+      <a href="#" ng-click="import()" class="import">Import</a>
+    </span>
+    <span class="right">
+    </span>
+  </div>
 
-  <span ng-show="importing">
-    <a href="#" ng-click="json()" class="mode" ng-class="{ active: mode == 'json' }">JSON</a>
-    <a href="#" ng-click="csv()" class="mode" ng-class="{ active: mode == 'csv' }">CSV</a>
-  </span>
-  <span ng-show="importing" class="right">
-    <a href="#" ng-click="submit()" class="import">Submit</a>
-  </span>
+  <div class="editor" ng-hide="importing">
+    <span>
+      <a href="#" ng-click="run()" class="run">Run</a>
+      <a ng-repeat="s in state()" class="state" href="#" ng-click="select(s)">
+        {{s.id}}
+      </a>
+    </span>
+    <span class="right">
+    </span>
+  </div>
+
+  <div class="import" ng-show="importing">
+    <span>
+      <a href="#" ng-click="json()" class="mode" ng-class="{ active: mode == 'json' }">JSON</a>
+      <a href="#" ng-click="csv()" class="mode" ng-class="{ active: mode == 'csv' }">CSV</a>
+    </span>
+    <span class="right">
+      <a href="#" ng-click="submit()" class="import">Submit</a>
+    </span>
+  </div>
 </div>

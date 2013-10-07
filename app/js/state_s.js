@@ -48,6 +48,12 @@ angular.module('repl.services').
 
     var worker = null;
 
+    var dirty_from = function(cur) {
+      for(var i = cur; i < state.length; i ++) {
+        state[i].dirty = true;
+      }
+    };
+
     return {
       /************************************************************************/
       /* ACCESSORS                                                            */
@@ -66,6 +72,10 @@ angular.module('repl.services').
       },
       code: function(code) {
         state[current].code = code;
+        if(!state[current].dirty) {
+          dirty_from(current);
+          $rootScope.$broadcast('update');
+        }
       },
       /************************************************************************/
       /* MOVES                                                                */
@@ -96,6 +106,7 @@ angular.module('repl.services').
           s.error = null;
         });
         current = 0;
+        dirty_from(0);
         $rootScope.$broadcast('update');
       },
       /************************************************************************/

@@ -19,11 +19,25 @@ angular.module('repl.directives').controller('ControlCtrl',
     /**************************************************************************/
     /* ACCESSORS                                                              */
     /**************************************************************************/
-    $scope.current = function() {
-      return _state.current() + 1;
-    };
     $scope.state = function() {
       return _state.get();
+    };
+
+    $scope.current = function(s) {
+      return _state.current() === s.id;
+    }
+    $scope.dirty = function(s) {
+      return s.dirty;
+    }
+    $scope.error = function(s) {
+      return s.error;
+    }
+    $scope.clean = function(s) {
+      return !s.error && !s.dirty;
+    }
+
+    $scope.z_index = function(s) {
+      return 1000-s.id;
     };
 
     /**************************************************************************/

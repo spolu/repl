@@ -7,6 +7,9 @@
   background-color: hsl(70, 8%, 45%);
 }
 
+/******************************************************************************/
+/* LAYOUT                                                                     */
+/******************************************************************************/
 .control > div.viewer {
   position: absolute;
   top: 0px;
@@ -34,6 +37,9 @@
   float: right;
 }
 
+/******************************************************************************/
+/* BUTTONS                                                                    */
+/******************************************************************************/
 .control a {
   color: white;
   font-weight: bold;
@@ -67,3 +73,79 @@
   font-weight: bold;
   opacity: 1.0;
 }
+
+/******************************************************************************/
+/* EDITOR COMMANDS                                                            */
+/******************************************************************************/
+.control > div.editor div.commands {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  width: 33px;
+}
+
+/******************************************************************************/
+/* EDITOR STATE                                                               */
+/******************************************************************************/
+.control > div.editor div.state {
+  display: inline-block;
+}
+
+.control div.step {
+  position: relative;
+  float: left;
+  height: 20px;
+  padding-left: 15px;
+  padding-right: 5px;
+  line-height: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.control div.step.current {
+  font-weight: bold;
+  opacity: 1.0;
+  color: white;
+}
+
+.control div.step:after {
+  left: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.control div.step:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: #aaa;
+  border-width: 10px;
+  top: 50%;
+  margin-top: -10px;
+}
+
+.control div.step.dirty {
+  background-color: #aaa;
+}
+.control div.step.dirty:after {
+  border-left-color: #aaa;
+}
+
+.control div.step.clean {
+  background-color: hsl(100, 30%, 55%);
+}
+.control div.step.clean:after {
+  border-left-color: hsl(100, 30%, 55%);
+}
+
+.control div.step.error {
+  background-color: hsl(0, 40%, 65%);
+}
+.control div.step.error:after {
+  border-left-color: hsl(0, 40%, 65%);
+}
+
+
+

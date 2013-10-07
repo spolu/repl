@@ -9,14 +9,20 @@
   </div>
 
   <div class="editor" ng-hide="importing">
-    <span>
+    <div class="commands">
       <a href="#" ng-click="run()" class="run">Run</a>
-      <a ng-repeat="s in state()" class="state" href="#" ng-click="select(s)">
+    </div>
+    <div class="state">
+      <div ng-repeat="s in state()" 
+           class="step" ng-click="select(s)"
+           ng-class="{ current: current(s),
+                       dirty: dirty(s),
+                       error: error(s),
+                       clean: clean(s) }"
+           style="z-index: {{z_index(s)}};">
         {{s.id}}
-      </a>
-    </span>
-    <span class="right">
-    </span>
+      </div>
+    </div>
   </div>
 
   <div class="import" ng-show="importing">

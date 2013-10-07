@@ -23,6 +23,9 @@ angular.module('repl.directives').controller('EditorCtrl',
     editor.getSession().setUseSoftTabs(true);
     editor.setHighlightActiveLine(false);
 
+    /**************************************************************************/
+    /* BASE UPDATE                                                            */
+    /**************************************************************************/
     $scope.code = '';
 
     var update = function() {
@@ -45,6 +48,9 @@ angular.module('repl.directives').controller('EditorCtrl',
     
     $scope.$on('update', update);
 
+    /**************************************************************************/
+    /* IMPORT                                                                 */
+    /**************************************************************************/
     $scope.$on('import', function() {
       $scope.importing = true;
     });
@@ -52,6 +58,9 @@ angular.module('repl.directives').controller('EditorCtrl',
       $scope.importing = false;
     });
 
+    /**************************************************************************/
+    /* INITIALIZATION                                                         */
+    /**************************************************************************/
     /* Initial update. */
     update();
   });
@@ -70,7 +79,7 @@ angular.module('repl.directives').directive('editor', function() {
     restrict: 'E',
     replace: true,
     scope: {},
-    templateUrl: '/partials/editor_d.html',
+    templateUrl: 'partials/editor_d.html',
     controller: 'EditorCtrl'
   };
 });

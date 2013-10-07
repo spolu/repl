@@ -24,6 +24,9 @@ angular.module('repl.directives').controller('ViewerCtrl',
     editor.setReadOnly(true);
     editor.setHighlightActiveLine(false);
 
+    /**************************************************************************/
+    /* BASE UPDATE                                                            */
+    /**************************************************************************/
     $scope.str = 'undefined';
 
     var update = function() {
@@ -34,6 +37,9 @@ angular.module('repl.directives').controller('ViewerCtrl',
 
     $scope.$on('update', update);
 
+    /**************************************************************************/
+    /* IMPORT                                                                 */
+    /**************************************************************************/
     $scope.importing = false;
 
     $scope.$on('import', function() {
@@ -103,6 +109,9 @@ angular.module('repl.directives').controller('ViewerCtrl',
       $scope.mode = 'json';
     });
 
+    /**************************************************************************/
+    /* DOWNLOAD                                                               */
+    /**************************************************************************/
     var json2csv = function(obj) {
       var array = typeof obj != 'object' ? JSON.parse(obj) : obj;
 
@@ -142,6 +151,9 @@ angular.module('repl.directives').controller('ViewerCtrl',
       document.body.removeChild(downloadLink);
     });
 
+    /**************************************************************************/
+    /* INITIALIZATION                                                         */
+    /**************************************************************************/
     /* Initial update. */
     update();
   });
@@ -160,7 +172,7 @@ angular.module('repl.directives').directive('viewer', function() {
     restrict: 'E',
     replace: true,
     scope: {},
-    templateUrl: '/partials/viewer_d.html',
+    templateUrl: 'partials/viewer_d.html',
     controller: 'ViewerCtrl'
   };
 });

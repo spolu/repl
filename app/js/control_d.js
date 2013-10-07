@@ -16,6 +16,19 @@
 //
 angular.module('repl.directives').controller('ControlCtrl',
   function($scope, $rootScope, $timeout, _state) {
+    /**************************************************************************/
+    /* ACCESSORS                                                              */
+    /**************************************************************************/
+    $scope.current = function() {
+      return _state.current() + 1;
+    };
+    $scope.count = function() {
+      return _state.get().length;
+    };
+
+    /**************************************************************************/
+    /* ACTIONS                                                                */
+    /**************************************************************************/
     $scope.run = function() {
       _state.run();
     };
@@ -26,6 +39,9 @@ angular.module('repl.directives').controller('ControlCtrl',
       _state.next();
     };
 
+    /**************************************************************************/
+    /* IMPORT                                                                 */
+    /**************************************************************************/
     $scope.import = function() {
       $rootScope.$broadcast('import');
       $scope.mode = 'json';
@@ -46,15 +62,11 @@ angular.module('repl.directives').controller('ControlCtrl',
       $scope.mode = 'json';
     };
 
+    /**************************************************************************/
+    /* DOWNLOAD                                                               */
+    /**************************************************************************/
     $scope.download = function() {
       $rootScope.$broadcast('download');
-    };
-
-    $scope.current = function() {
-      return _state.current() + 1;
-    };
-    $scope.count = function() {
-      return _state.get().length;
     };
 
   });
@@ -73,7 +85,7 @@ angular.module('repl.directives').directive('control', function() {
     restrict: 'E',
     replace: true,
     scope: {},
-    templateUrl: '/partials/control_d.html',
+    templateUrl: 'partials/control_d.html',
     controller: 'ControlCtrl'
   };
 });

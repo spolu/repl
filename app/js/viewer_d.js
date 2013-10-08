@@ -74,25 +74,49 @@ angular.module('repl.directives').controller('ViewerCtrl',
       }
     };
 
+    var csv_to_array = function(str, del) {
+      del = (del || ",");
+      var obj_r = new RegExp(
+        (
+          // Delimiters.
+          "(\\" + del + "|\\r?\\n|\\r|^)" +
+          // Quoted fields.
+          "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+          // Standard fields.
+          "([^\"\\" + del + "\\r\\n]*))"
+      ),
+      "gi"
+      );
+      var data = [[]];
+      var obj_m = null;
+      while(obj_m = obj_r.exec(str)) {
+        var del_m = obj_m[1];
+        if(del_m.length && del_m != del) {
+          data.push([]);
+        }
+        if(obj_m[2]) {
+          var val = obj_m[2].replace(new RegExp("\"\"", "g"),"\"");
+        }
+        else {
+          var val = obj_m[3];
+        }
+        data[data.length-1].push(val);
+      }
+      return data;
+    };
+
     var import_csv = function(str) {
-      try {
-        var lines = str.split('\n');
-        var header = lines.shift().split(',');
-        var json = [];
-        lines.forEach(function(l) {
-          var values = l.split(',');
-          var tmp = {};
-          values.forEach(function(v, i) {
-            tmp[header[i].trim() || ('field_' + i)] = v.trim();
-          });
-          json.push(tmp);
+      var lines = csv_to_array(str);
+      var header = lines.shift();
+      var json = [];
+      lines.forEach(function(l) {
+        var tmp = {};
+        l.forEach(function(v, i) {
+          tmp[(header[i] || ('field_' + i)).trim()] = v.trim();
         });
-        _state.import(json);
-      }
-      catch(err) {
-        /* We revert */
-        update();
-      }
+        json.push(tmp);
+      });
+      _state.import(json);
     };
 
     $scope.$on('submit', function() {

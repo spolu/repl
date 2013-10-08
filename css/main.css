@@ -113,7 +113,7 @@ a:visited { color: #a0a; }
   text-align: center;
 }
 
-#landing h1 {
+#landing .top h1 {
   text-transform: uppercase;
   letter-spacing: 0px;
   font-size: 1.8em;
@@ -122,7 +122,7 @@ a:visited { color: #a0a; }
   color: #444;
 }
 
-#landing h2 {
+#landing .top h2 {
   text-transform: uppercase;
   font-size: 1.6em;
   text-align: center;
@@ -131,7 +131,7 @@ a:visited { color: #a0a; }
   margin-bottom: 40px;
 }
 
-#landing a.cta {
+#landing .top a.cta {
   background-color: hsl(200, 50%, 50%);
   padding: 10px 15px 10px 15px;
   border-radius: 3px;
@@ -139,6 +139,23 @@ a:visited { color: #a0a; }
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+#landing .quote {
+  color: #444;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 100px;
+}
+
+#landing .features {
+  margin-top: 50px;
+  color: #aaa;
+  text-align: center;
+}
+
+#landing .examples {
+  margin-top: 100px;
 }
 
 /*****************************************************************************/

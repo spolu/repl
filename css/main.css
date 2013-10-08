@@ -158,6 +158,12 @@ a:visited { color: #a0a; }
   margin-top: 100px;
 }
 
+#landing .examples .explanation {
+  text-align: left;
+  color: #444;
+  font-weight: bold;
+}
+
 /*****************************************************************************/
 /*
 /* Posts

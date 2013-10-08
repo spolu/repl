@@ -2,6 +2,9 @@
 - Focus on Editor
 - Remove Selection
 - Force Run (to Refresh)
+- Error reporting
+
+Prospective:
 - Remove Step?
 - Save using LocalStorage
 

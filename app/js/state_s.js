@@ -28,7 +28,7 @@ angular.module('repl.services').
 
     var initial_code = '';
     initial_code += '(function($, cb_) {\n';
-    initial_code += '  /* Example code. Clik "Run" to execute. */\n';
+    initial_code += '  /* Example code. Click "Run" to execute. */\n';
     initial_code += '  $.push({\n';
     initial_code += '    foo: \'hello\',\n';
     initial_code += '    bar: \'world\'\n';
